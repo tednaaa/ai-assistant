@@ -1,6 +1,5 @@
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { app, BrowserWindow } from 'electron';
 
 import { App } from './app';
 
@@ -13,16 +12,3 @@ root.render(
     <App />
   </StrictMode>
 );
-
-const createWindow = () => {
-  const win = new BrowserWindow({
-    width: 800,
-    height: 600,
-  });
-
-  win.loadFile('assets/index.html');
-};
-
-app.whenReady().then(() => {
-  createWindow();
-});

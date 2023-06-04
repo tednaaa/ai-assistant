@@ -1,6 +1,6 @@
 import { createBrowserRouter, redirect } from 'react-router-dom';
 
-import { routes } from '@/shared/routes';
+import { routes } from '@renderer/shared/routes';
 
 import { ChatPage } from './chat';
 
