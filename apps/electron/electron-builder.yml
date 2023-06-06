@@ -1,5 +1,5 @@
 appId: com.electron.app
-productName: interview-helper
+productName: interview-assistant
 directories:
   buildResources: build
 files:
@@ -13,7 +13,7 @@ asarUnpack:
   - resources/**
 afterSign: build/notarize.js
 win:
-  executableName: interview-helper
+  executableName: interview-assistant
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
