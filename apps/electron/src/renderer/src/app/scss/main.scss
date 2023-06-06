@@ -5,8 +5,9 @@
 
 body {
   font-family: var(--font-family), sans-serif;
-  background-color: var(--body-background-color);
   font-weight: var(--body-font-weight);
   font-size: var(--body-font-size);
   line-height: var(--body-line-height);
+
+  background-color: var(--color-dark-grey);
 }

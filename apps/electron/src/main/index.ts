@@ -9,15 +9,13 @@ function createWindow(): void {
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
+      contextIsolation: false,
+      nodeIntegration: true,
       sandbox: false,
     },
   });
 
   mainWindow.maximize();
-
-  mainWindow.on('ready-to-show', () => {
-    mainWindow.show();
-  });
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url);

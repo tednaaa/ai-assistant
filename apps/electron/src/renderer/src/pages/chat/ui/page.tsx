@@ -1,5 +1,10 @@
 import { useEffect, useState, useRef } from 'react';
+
 import { Container } from '@renderer/shared/ui/container';
+import { Button } from '@renderer/shared/ui/button';
+import { OpenAIService } from '@renderer/shared/api/openai/openai.service';
+
+import testMp3 from './test.mp3';
 
 export const ChatPage = () => {
   const [chunks, setChunks] = useState<Blob[]>([]);
@@ -35,8 +40,11 @@ export const ChatPage = () => {
   }, []);
 
   const createAudioURL = () => {
-    const audioBlob = new Blob(chunks, { type: 'audio/webm;codecs=opus' });
+    const audioBlob = new Blob(chunks, { type: 'audio/webm' });
     const audioURL = window.URL.createObjectURL(audioBlob);
+
+    OpenAIService.audioTranslations({ file: audioBlob, model: 'whisper-1' });
+
     return audioURL;
   };
 
@@ -49,7 +57,6 @@ export const ChatPage = () => {
   const startRecord = () => {
     if (mediaRecorder) {
       mediaRecorder.start();
-      console.log(mediaRecorder);
       console.log('Recorder started...');
     }
   };
@@ -61,16 +68,24 @@ export const ChatPage = () => {
     }
   };
 
-  console.log(chunks);
+  useEffect(() => {
+    // OpenAIService.chatCompletitions({
+    //   model: 'gpt-3.5-turbo',
+    //   messages: [
+    //     { role: 'user', content: 'what kind of variables in javascript?' },
+    //   ],
+    // });
+  }, []);
 
+  // interview-assistant
   return (
     <div>
       <Container>
         {chunks.length > 0 && (
           <audio ref={audioRef} src={createAudioURL()} controls />
         )}
-        <button onClick={startRecord}>Start Record</button>
-        <button onClick={stopRecord}>Stop Record</button>
+        <Button onClick={startRecord}>Start Record</Button>
+        <Button onClick={stopRecord}>Stop Record</Button>
       </Container>
     </div>
   );
