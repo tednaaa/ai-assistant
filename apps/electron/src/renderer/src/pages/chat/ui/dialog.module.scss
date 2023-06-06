@@ -1,0 +1,28 @@
+.dialog {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.item {
+  display: flex;
+  padding: 20px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+
+  font-size: 18px;
+  line-height: 26px;
+
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}
+
+.avatar {
+  height: 40px;
+  width: 40px;
+  margin-right: 20px;
+}
+
+.text {
+  margin-top: 8px;
+}

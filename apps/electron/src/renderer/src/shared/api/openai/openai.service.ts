@@ -16,21 +16,17 @@ const routes = {
 };
 
 export class OpenAIService {
-  static chatCompletitions(
-    chatCompletitionsDto: ChatCompletitionsDto
-  ): Promise<object> {
+  static chatCompletitions(chatCompletitionsDto: ChatCompletitionsDto) {
     return instance.post(routes.chatCompletions, chatCompletitionsDto);
   }
 
-  static audioTranslations(
-    audioTranslationsDto: AudioTranslationsDto
-  ): Promise<object> {
+  static audioTranslations(audioTranslationsDto: AudioTranslationsDto) {
     const formData = new FormData();
 
     formData.append('file', audioTranslationsDto.file, 'audio.webm');
     formData.append('model', audioTranslationsDto.model);
 
-    return instance.post(routes.audioTranslations, formData, {
+    return instance.post<{ text: string }>(routes.audioTranslations, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
   }

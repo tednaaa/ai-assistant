@@ -28,7 +28,7 @@ module.exports = {
       'error',
       { 'ts-ignore': 'allow-with-description' },
     ],
-    '@typescript-eslint/explicit-function-return-type': 'error',
+    '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-empty-function': [
       'error',
@@ -38,12 +38,4 @@ module.exports = {
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-var-requires': 'off',
   },
-  overrides: [
-    {
-      files: ['*.js'],
-      rules: {
-        '@typescript-eslint/explicit-function-return-type': 'off',
-      },
-    },
-  ],
 };
