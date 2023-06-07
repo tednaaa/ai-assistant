@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useList } from 'effector-react';
 
-import { $messages } from '../model';
+import { $messages } from '../../model';
 
 import avatarImage from './avatar.svg';
 import openaiImage from './openai.svg';
