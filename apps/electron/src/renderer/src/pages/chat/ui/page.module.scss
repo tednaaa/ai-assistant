@@ -1,0 +1,20 @@
+.wrapper {
+  padding: 110px 0 30px;
+}
+
+.header {
+  background-color: #47494b;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.loader {
+  position: absolute;
+  top: 25px;
+  right: 20px;
+}

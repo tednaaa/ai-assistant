@@ -1,24 +1,26 @@
 import { FC, useEffect, useState } from 'react';
+import { useEvent, useStore } from 'effector-react';
 
 import { Container } from '@renderer/shared/ui/container';
-import { Button } from '@renderer/shared/ui/button';
+import { RecordButton } from '@renderer/shared/ui/record-button';
+import { Loader } from '@renderer/shared/ui/loader';
 
-import { Dialog } from './dialog';
-import { audioToTextFx, chatCompletionsFx } from '../model';
-import { useEvent } from 'effector-react';
+import { $pending, audioToTextFx } from '../model';
+
+import { Dialog } from './dialog/dialog';
+
+import styles from './page.module.scss';
 
 export const ChatPage: FC = () => {
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder>();
+  const [isRecording, setRecording] = useState(false);
+
+  const pending = useStore($pending);
   const audioToText = useEvent(audioToTextFx);
-  const chatCompletions = useEvent(chatCompletionsFx);
 
-  const handleDataAvailable = async (event: BlobEvent): Promise<void> => {
-    if (event.data.size > 0) {
-      const { data } = await audioToText(event.data);
+  const handleDataAvailable = (event: BlobEvent) => audioToText(event.data);
 
-      chatCompletions(data.text);
-    }
-  };
+  const changeRecordState = () => setRecording((prevState) => !prevState);
 
   useEffect(() => {
     let mediaRecorder: MediaRecorder;
@@ -40,19 +42,28 @@ export const ChatPage: FC = () => {
     };
   }, []);
 
-  const startRecord = (): void => {
-    if (mediaRecorder) mediaRecorder.start();
-  };
+  useEffect(() => {
+    if (!mediaRecorder) return;
 
-  const stopRecord = (): void => {
-    if (mediaRecorder) mediaRecorder.stop();
-  };
+    if (isRecording) mediaRecorder.start();
+    else mediaRecorder.stop();
+  }, [isRecording]);
+
+  useEffect(() => {
+    scrollBy({ behavior: 'smooth', top: document.body.scrollHeight });
+  }, [pending]);
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <Container>
-        <Button onClick={startRecord}>Start Record</Button>
-        <Button onClick={stopRecord}>Stop Record</Button>
+        <header className={styles.header}>
+          <RecordButton
+            isRecording={isRecording}
+            onClick={changeRecordState}
+            disabled={pending}
+          />
+          {pending && <Loader className={styles.loader} />}
+        </header>
 
         <Dialog />
       </Container>

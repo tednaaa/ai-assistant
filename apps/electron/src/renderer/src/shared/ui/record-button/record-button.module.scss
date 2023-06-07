@@ -1,0 +1,41 @@
+.recordButton {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  color: var(--color-dark-grey);
+  background-color: #fff;
+  transition: ease-in-out 0.3s;
+
+  &:disabled {
+    opacity: 0.1;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 60%;
+    border-radius: 5px;
+    transform: rotate(45deg);
+    background-color: rgb(237, 0, 45);
+    transition: ease-in-out 0.3s;
+  }
+}
+
+.recordButtonSvg {
+  height: 30px;
+  width: 30px;
+}
+
+.recordButtonActive {
+  color: #fff;
+  background-color: #3eb5d9;
+
+  &::after {
+    width: 0;
+  }
+}

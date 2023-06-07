@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-import { AudioTranslationsDto, ChatCompletitionsDto } from './openai.dto';
 import { constants } from '@renderer/shared/lib/constants';
+import { AudioTranslationsDto, ChatCompletitionsDto } from './types';
 
 const instance = axios.create({
   baseURL: 'https://api.openai.com/v1',
