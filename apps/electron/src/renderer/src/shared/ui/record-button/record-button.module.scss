@@ -21,7 +21,7 @@
     width: 60%;
     border-radius: 5px;
     transform: rotate(45deg);
-    background-color: rgb(237, 0, 45);
+    background-color: var(--color-red);
     transition: ease-in-out 0.3s;
   }
 }
@@ -33,7 +33,7 @@
 
 .recordButtonActive {
   color: #fff;
-  background-color: #3eb5d9;
+  background-color: var(--color-light-blue);
 
   &::after {
     width: 0;

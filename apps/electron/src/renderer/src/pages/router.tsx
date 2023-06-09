@@ -6,7 +6,7 @@ import { ChatPage } from './chat';
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: routes.ROOT,
     loader: () => redirect(routes.CHAT),
   },
   {
