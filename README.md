@@ -1,4 +1,4 @@
-<img width="350" alt="image" src="https://github.com/tednaaa/interview-assistant/assets/79831859/62f41908-df17-42c2-8490-98e6c8597d7c">
+<img width="350" alt="image" src="https://github.com/tednaaa/ai-assistant/assets/79831859/b003a04b-a27a-4532-9151-b79c5d5ed04d">
 
 # Instructions
 
