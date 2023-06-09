@@ -37,7 +37,7 @@ export const ChatPage: FC = () => {
       })
       .catch(console.log);
 
-    return (): void => {
+    return () => {
       mediaRecorder?.removeEventListener('dataavailable', handleDataAvailable);
     };
   }, []);
@@ -45,13 +45,16 @@ export const ChatPage: FC = () => {
   useEffect(() => {
     if (!mediaRecorder) return;
 
-    if (isRecording) mediaRecorder.start();
-    else mediaRecorder.stop();
+    if (isRecording) {
+      mediaRecorder.start();
+    } else {
+      mediaRecorder.stop();
+    }
   }, [isRecording]);
 
   useEffect(() => {
     scrollBy({ behavior: 'smooth', top: document.body.scrollHeight });
-  }, [pending]);
+  }, [document.body.scrollHeight]);
 
   return (
     <div className={styles.wrapper}>

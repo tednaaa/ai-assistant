@@ -1,8 +1,8 @@
 import { createStore, createEffect, sample } from 'effector';
-import { OpenAIService } from '@renderer/shared/api/openai';
-
-import { Message } from '@renderer/shared/api/openai';
 import { or } from 'patronum';
+
+import { OpenAIService } from '@renderer/shared/api/openai';
+import { Message } from '@renderer/shared/api/openai';
 
 export const audioToTextFx = createEffect(async (audioBlob: Blob) => {
   return await OpenAIService.audioTranslations({

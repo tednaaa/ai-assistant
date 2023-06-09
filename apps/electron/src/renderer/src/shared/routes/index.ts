@@ -1,3 +1,4 @@
-export enum routes {
-  CHAT = '/chat',
-}
+export const routes = {
+  ROOT: '/',
+  CHAT: '/chat',
+};

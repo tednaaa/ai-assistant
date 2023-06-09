@@ -1,5 +1,7 @@
 import { FC } from 'react';
 import { useList } from 'effector-react';
+import DOMPurify from 'dompurify';
+import { marked } from 'marked';
 
 import { $messages } from '../../model';
 
@@ -16,7 +18,19 @@ export const Dialog: FC = () => {
         src={message.role === 'user' ? avatarImage : openaiImage}
         alt="avatar"
       />
-      <div className={styles.text}>{message.content}</div>
+      <div
+        className={styles.text}
+        dangerouslySetInnerHTML={{
+          __html: DOMPurify.sanitize(
+            marked.parse(message.content, {
+              headerIds: false,
+              mangle: false,
+              gfm: true,
+              breaks: true,
+            })
+          ),
+        }}
+      ></div>
     </li>
   ));
 
