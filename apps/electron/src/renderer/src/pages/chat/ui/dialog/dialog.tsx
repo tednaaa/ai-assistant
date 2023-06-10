@@ -34,5 +34,5 @@ export const Dialog: FC = () => {
     </li>
   ));
 
-  return <ul className={styles.dialog}>{list}</ul>;
+  return <ul>{list}</ul>;
 };

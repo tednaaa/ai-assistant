@@ -5,15 +5,15 @@ import { MainLayout } from '@renderer/layouts/main';
 
 import { $pending, localAudioToTextFx } from '../model';
 
-import { Dialog } from './dialog/dialog';
+import { Images } from './images';
 
-export const ChatPage: FC = () => {
+export const GenerateImagesPage: FC = () => {
   const audioToText = useEvent(localAudioToTextFx);
   const pending = useStore($pending);
 
   return (
     <MainLayout audioToText={audioToText} pending={pending}>
-      <Dialog />
+      <Images />
     </MainLayout>
   );
 };
