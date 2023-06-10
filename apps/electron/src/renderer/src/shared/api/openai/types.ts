@@ -3,7 +3,11 @@ export interface Message {
   content: string;
 }
 
-export interface ChatCompletitionsDto {
+export interface Image {
+  url: string;
+}
+
+export interface ChatCompletionsDto {
   model:
     | 'gpt-4'
     | 'gpt-4-0314'
@@ -14,7 +18,36 @@ export interface ChatCompletitionsDto {
   messages: Message[];
 }
 
+export interface ChatCompletionsResponse {
+  id: string;
+  object: 'chat.completion';
+  created: number;
+  choices: {
+    index: number;
+    message: Message;
+    finish_reason: 'stop';
+  }[];
+  usage: {
+    prompt_tokens: number;
+    completion_tokens: number;
+    total_tokens: number;
+  };
+}
+
 export interface AudioTranslationsDto {
   file: Blob;
   model: 'whisper-1';
+}
+
+export interface AudioTranslationsResponse {
+  text: string;
+}
+
+export interface ImagesGenerationsDto {
+  prompt: string;
+}
+
+export interface ImagesGenerationsResponse {
+  created: number;
+  data: Image[];
 }

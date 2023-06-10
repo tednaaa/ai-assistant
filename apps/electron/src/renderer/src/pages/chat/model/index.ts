@@ -1,25 +1,20 @@
-import { createStore, createEffect, sample } from 'effector';
+import { createStore, createEffect, sample, attach } from 'effector';
 import { or } from 'patronum';
 
-import { OpenAIService } from '@renderer/shared/api/openai';
-import { Message } from '@renderer/shared/api/openai';
+import { Message, OpenAIService } from '@renderer/shared/api/openai';
+import { audioToTextFx } from '@renderer/layouts/main';
 
-export const audioToTextFx = createEffect(async (audioBlob: Blob) => {
-  return await OpenAIService.audioTranslations({
-    model: 'whisper-1',
-    file: audioBlob,
-  });
-});
+export const localAudioToTextFx = attach({ effect: audioToTextFx });
 
 export const chatCompletionsFx = createEffect(async (messages: Message[]) => {
-  return await OpenAIService.chatCompletitions({
+  return await OpenAIService.chatCompletions({
     model: 'gpt-3.5-turbo',
     messages,
   });
 });
 
 export const $messages = createStore<Message[]>([])
-  .on(audioToTextFx.doneData, (messages, { data }) => [
+  .on(localAudioToTextFx.doneData, (messages, { data }) => [
     ...messages,
     { role: 'user', content: data.text },
   ])
@@ -28,10 +23,13 @@ export const $messages = createStore<Message[]>([])
     data.choices[0].message,
   ]);
 
-export const $pending = or(audioToTextFx.pending, chatCompletionsFx.pending);
+export const $pending = or(
+  localAudioToTextFx.pending,
+  chatCompletionsFx.pending
+);
 
 sample({
-  clock: audioToTextFx.doneData,
+  clock: localAudioToTextFx.doneData,
   source: $messages,
   target: chatCompletionsFx,
 });

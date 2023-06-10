@@ -1,0 +1,38 @@
+.item {
+  padding: 20px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+
+  font-size: 18px;
+  line-height: 26px;
+
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}
+
+.head {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  height: 40px;
+  width: 40px;
+  margin-right: 20px;
+}
+
+.prompt {
+  margin-top: 5px;
+}
+
+.image {
+  object-fit: cover;
+  border-radius: 50px;
+  border: transparent 2px solid;
+  transition: 0.3s;
+
+  &:hover {
+    border: var(--color-grey) 10px solid;
+  }
+}
