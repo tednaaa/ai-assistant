@@ -1,11 +1,11 @@
-import { createBrowserRouter, redirect } from 'react-router-dom';
+import { createHashRouter, redirect } from 'react-router-dom';
 
 import { routes } from '@renderer/shared/routes';
 
 import { ChatPage } from './chat';
 import { GenerateImagesPage } from './generate-images';
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
   {
     path: routes.ROOT,
     loader: () => redirect(routes.CHAT),

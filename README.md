@@ -1,4 +1,21 @@
-<img width="350" alt="image" src="https://github.com/tednaaa/ai-assistant/assets/79831859/b003a04b-a27a-4532-9151-b79c5d5ed04d">
+<table>
+  <tr>
+    <td>
+      <img
+        width="350"
+        alt="image"
+        src="https://github.com/tednaaa/ai-assistant/assets/79831859/2a61522f-3952-485b-a69d-736563502f13"
+      />
+    </td>
+    <td>
+      <img
+        width="350"
+        alt="image"
+        src="https://github.com/tednaaa/ai-assistant/assets/79831859/fc682de8-46a2-4f70-852e-16f36a7f98d6"
+      />
+    </td>
+  </tr>
+</table>
 
 # Instructions
 
@@ -18,4 +35,12 @@ cp .env.example .env
 
 ```
 npm start
+```
+
+> Build for win, mac and linux - (apps/electron/dist)
+
+```
+nx run electron:build:win
+nx run electron:build:mac
+nx run electron:build:linux
 ```
