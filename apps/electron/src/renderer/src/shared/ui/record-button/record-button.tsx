@@ -6,15 +6,22 @@ import styles from './record-button.module.scss';
 interface Props {
   isRecording: boolean;
   onClick: MouseEventHandler<HTMLButtonElement>;
+  className: string;
   disabled?: boolean;
 }
 
-export function RecordButton({ isRecording, onClick, disabled }: Props) {
+export function RecordButton({
+  isRecording,
+  onClick,
+  className,
+  disabled,
+}: Props) {
   return (
     <button
       className={clsx(
         styles.recordButton,
-        isRecording && styles.recordButtonActive
+        isRecording && styles.recordButtonActive,
+        className
       )}
       onClick={onClick}
       disabled={disabled}
