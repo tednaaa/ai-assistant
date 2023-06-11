@@ -1,3 +1,3 @@
 export const constants = {
-  OPENAI_TOKEN: process.env.OPENAI_TOKEN,
+  OPENAI_TOKEN: import.meta.env.RENDERER_VITE_OPENAI_TOKEN,
 };
